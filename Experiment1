@@ -20,3 +20,9 @@ for i in range(distance):
   if start==0:
     break
 print("Total bananas delivered:",start)
+
+Output:
+No. of bananas at the start: 3000
+Distance to be covered: 1000
+Maximum banana camel can carry at a time: 1000
+Total bananas delivered: 533
