@@ -1,0 +1,28 @@
+NLP
+Code:
+import nltk
+nltk.download('vader_lexicon')
+
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+# Initialize the sentiment analyzer
+sia = SentimentIntensityAnalyzer()
+
+# Sample text for analysis
+text = "I really enjoyed this movie. The acting was great and the plot was engaging."
+
+# Calculate the sentiment score for the text
+score = sia.polarity_scores(text)
+
+# Print the sentiment score
+print("negative = ", score["neg"])
+print("neutral = ", score["neu"])
+print("positive = ", score["pos"])
+print("compound = ", score["compound"])
+
+Output:
+negative =  0.0
+neutral =  0.498
+positive =  0.502
+compound =  0.8777
+[nltk_data] Downloading package vader_lexicon to /root/nltk_data...
