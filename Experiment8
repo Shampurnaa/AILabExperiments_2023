@@ -1,0 +1,10 @@
+LR
+
+Code:
+from sklearn.linear_model import LogisticRegression
+lr=LogisticRegression()
+lr.fit(X_train, Y_train)
+Y_pred_lr=lr.predict(X_test)
+ln[45]
+Y_pred_lr.shape
+print("The logistic regression is:"+str(source_ln)+"%")
