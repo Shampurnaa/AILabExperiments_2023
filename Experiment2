@@ -22,3 +22,6 @@ graph = { "a" : ["c", "d", "b"],
          }
 result = (colour_vertices(graph))
 print(result)
+
+Output:
+{'a': 0, 'b': 1, 'c': 2, 'd': 1, 'e': 0}
