@@ -1,0 +1,22 @@
+IMPLEMENTATION OF BANANA CAMEL PROBLEM AIM: A PERSON HAS 3000 BANANA AND A CAMEL. 
+THE PERSON WANTS TO TRANSPORT THE MAXIMUM NUMBER OF BANANAS TO A DESTINATION WHICH IS 1000 KMS AWAT, USING ONLY THE CAMEL AS A MODE OF TRANSPORTATION, 
+THE CAMEL CANNOT CARRY MORE THAN 1000 BANANA EVERY KM IT TRAVELS,
+WHAT IS THE MINIMUM NUMBER OF BANANAS THAT CAN BE TRASFERED TO THE DESTINATION USING ONLY CAMEL.
+Code:
+total_banana = int(input("No. of bananas at the start: "))
+distance = int(input("Distance to be covered: "))
+load_capacity = int(input("Maximum banana camel can carry at a time: "))
+
+banana_lost = 0
+start = total_banana
+for i in range(distance):
+  while start>0:
+    start = start-load_capacity
+    if start == 1:
+      banana_lost = banana_lost - 1
+    banana_lost = banana_lost + 2
+  banana_lost = banana_lost - 1
+  start=total_banana - banana_lost
+  if start==0:
+    break
+print("Total bananas delivered:",start)
