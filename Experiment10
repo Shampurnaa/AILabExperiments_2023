@@ -1,0 +1,62 @@
+ DEEP LEARNING
+ Code:
+ import tensorflow as tf
+from tensorflow import keras
+
+# Load the CIFAR-10 dataset
+(x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+
+# Normalize pixel values between 0 and 1
+x_train = x_train.astype('float32') / 255
+x_test = x_test.astype('float32') / 255
+
+# Define the CNN architecture
+model = keras.Sequential([
+    keras.layers.Conv2D(32, (3, 3), padding='same',
+                        activation='relu', input_shape=x_train.shape[1:]),
+    keras.layers.MaxPooling2D((2, 2)),
+    keras.layers.Conv2D(64, (3, 3), padding='same', activation='relu'),
+    keras.layers.MaxPooling2D((2, 2)),
+    keras.layers.Flatten(),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dense(10)
+])
+
+# Compile the model
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(
+                  from_logits=True),
+              metrics=['accuracy'])
+
+# Train the model on the training data
+model.fit(x_train, y_train, epochs=10, validation_data=(x_test, y_test))
+
+# Evaluate the model on the test data
+test_loss, test_acc = model.evaluate(x_test, y_test)
+print(f'Test accuracy: {test_acc}')
+
+Output:
+Downloading data from https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+170498071/170498071 [==============================] - 2s 0us/step
+Epoch 1/10
+1563/1563 [==============================] - 60s 38ms/step - loss: 1.4208 - accuracy: 0.4904 - val_loss: 1.1321 - val_accuracy: 0.6046
+Epoch 2/10
+1563/1563 [==============================] - 57s 36ms/step - loss: 1.0459 - accuracy: 0.6352 - val_loss: 1.0292 - val_accuracy: 0.6410
+Epoch 3/10
+1563/1563 [==============================] - 56s 36ms/step - loss: 0.9160 - accuracy: 0.6801 - val_loss: 0.9487 - val_accuracy: 0.6715
+Epoch 4/10
+1563/1563 [==============================] - 57s 36ms/step - loss: 0.8348 - accuracy: 0.7105 - val_loss: 0.9007 - val_accuracy: 0.6889
+Epoch 5/10
+1563/1563 [==============================] - 56s 36ms/step - loss: 0.7599 - accuracy: 0.7357 - val_loss: 0.9887 - val_accuracy: 0.6691
+Epoch 6/10
+1563/1563 [==============================] - 55s 35ms/step - loss: 0.7031 - accuracy: 0.7553 - val_loss: 0.8934 - val_accuracy: 0.6962
+Epoch 7/10
+1563/1563 [==============================] - 55s 35ms/step - loss: 0.6427 - accuracy: 0.7768 - val_loss: 0.9008 - val_accuracy: 0.6989
+Epoch 8/10
+1563/1563 [==============================] - 55s 35ms/step - loss: 0.5986 - accuracy: 0.7904 - val_loss: 0.8797 - val_accuracy: 0.7071
+Epoch 9/10
+1563/1563 [==============================] - 55s 35ms/step - loss: 0.5583 - accuracy: 0.8036 - val_loss: 0.8983 - val_accuracy: 0.7103
+Epoch 10/10
+1563/1563 [==============================] - 55s 35ms/step - loss: 0.5155 - accuracy: 0.8189 - val_loss: 0.9158 - val_accuracy: 0.7096
+313/313 [==============================] - 3s 10ms/step - loss: 0.9158 - accuracy: 0.7096
+Test accuracy: 0.7095999717712402
